@@ -1,0 +1,71 @@
+
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+{% load static %}
+
+
+
+    <!-- end header -->
+<div class="yellow_bg">
+   <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                     <h2>{{meal_detail.name}}</h2>
+                    
+                  </div>
+               </div>
+            </div>
+          </div>
+</div>
+
+<!-- blog -->
+<div class="blog">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mar_bottom">
+
+        <div class="blog_box blog_box_inline col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="blog_img_box">
+            <figure><img src='../media/{{meal_detail.image}}' alt="#"/>
+             <span>{{meal_detail.price}}$</span>
+            </figure>
+          </div>
+          <h3>{{meal_detail.name}}</h3>
+        </div>
+        <div class="blog_box blog_box_inline col-xl-6 col-lg-6 col-md-6 col-sm-12">
+           <div class="textboxfordetailmeal">
+               <div>     <h4>Prepration Time : </h4>
+                <span>{{meal_detail.prepration_time}}</span> <strong>Minutes</strong></div>
+
+
+
+                    <div>     <h4>Only</h4>
+                        <span>{{meal_detail.price}} </span><strong>$</strong></div>
+
+
+                        <div>     <h4>Category</h4>
+                          <span>{{meal_detail.category}} </span><strong></strong></div>
+
+
+   
+        </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- end blog -->
+
+
+
+
+{% endblock %}

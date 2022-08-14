@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% load static %}
+
+
+<div class="container mt-100">
+<div class="row">
+
+
+   <form action="{% url 'meals:meal_search' %}" class="search-home">
+      {% csrf_token %}
+   <div>
+   <input type="search" class="form-control rounded" placeholder="Search" name="name" />
+   <select name="categories" id="">
+      <option value="State" disabled>Categories</option>
+      {% for category in categories %}
+      <option value="{{category.name}}">{{category.name}}</option>
+      {% endfor %}
+
+
+
+   </select>
+
+
+
+
+   <div data-role="rangeslider" class="rangeslider">
+      <label for="price-min">Min Price:</label>
+      <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+      <label for="price-max">Max Price:</label>
+      <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+    </div>
+
+   </div>
+   <div>
+   <button type="submit" class="btn btn-outline-primary">search</button>
+   </div>
+   </form>
+
+</div>                   		                                                   
+<div class="row">
+    {% for meal in meals %}
+<div class="col-md-4 col-sm-6 mealList">
+<div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+<div class="inner">
+<div class="main-img"><img src="{{ meal.image.url }}" alt="Category"></div>
+</div></a>
+<div class="card-body text-center">
+<h4 class="card-title">{{meal.name}}</h4>
+<p class="text-muted">Starting from ${{meal.price}}</p><a class="btn btn-outline-primary btn-sm" href="{% url 'meals:meal_detail' meal.slug %}" data-abc="true">View Products</a>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+
+{% endblock %}

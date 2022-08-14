@@ -1,0 +1,45 @@
+{% load static %}
+
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="full">
+                    
+                    <a class="logo" href="{% url 'meals:meal_search' %}"><img src="{% static 'site_static/images/logo.png' %}" alt="#" /></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="full">
+                    <div class="right_header_info">
+                        <ul>
+                            <li class="dinone">Contact Us : <img style="margin-right: 15px;margin-left: 15px;" src="{% static 'site_static/images/phone_icon.png' %}" alt="#"><a href="#">987-654-3210</a></li>
+                            <li class="dinone"><img style="margin-right: 15px;" src="{% static 'site_static/images/mail_icon.png' %}" alt="#"><a href="#">demo@gmail.com</a></li>
+                            <li class="dinone"><img style="margin-right: 15px;height: 21px;position: relative;top: -2px;" src="{% static 'site_static/images/location_icon.png' %}" alt="#"><a href="#">104 New york , USA</a></li>
+                            <li class="button_user">
+                                {% if user.is_authenticated %}
+                                <a class="button" href="javascript:{document.getElementById('logout').submit()}">LogOut</a>
+                                <form action="{% url 'account:logout' %}" id="logout" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="" id="">
+                                 </form>
+
+                                {% else %}
+                                <a class="button active" href="{% url 'account:login' %}">Login</a>
+                                <a class="button" href="{% url 'account:register' %}">Register</a>
+                                {% endif %}
+                                
+                            </li>
+                            <li><img style="margin-right: 15px;" src="{% static 'site_static/images/search_icon.png' %}" alt="#"></li>
+                            <li>
+                                <button type="button" id="sidebarCollapse">
+                                    <img src="{% static 'site_static/images/menu_icon.png'  %}" alt="#">
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

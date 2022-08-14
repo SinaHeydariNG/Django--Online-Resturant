@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+{% load static %}
+<!-- blog -->
+<div class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          <i><img src="{% static 'site_static/images/title.png' %}" alt="#"/></i>
+          
+          <span>when looking at its layout. The point of using Lorem</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+        {%for post in post_list%}
+      
+     
+            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12 mar_bottom blog_posts">
+                <a href="{% url 'blog:blog_detail' post.id%}">
+        <div class="blog_box">
+          <div class="blog_img_box">
+            <figure><img src='../../media/{{post.image}}' alt="#"/>
+             <span>{{post.created}}</span>
+            </figure>
+          </div>
+          <h3>{{post.title}}</h3>
+          <p>{{post.content}}</p>
+        </div>
+    </a>
+      </div>
+
+      {% endfor %}
+<div class="col-xs-12 col-xl-12 col-sm-12 col-lg-12">
+
+  {% if post_list.has_other_pages %}
+  <div class="col-xs-12 col-xl-12 col-sm-12 col-lg-12">
+
+    <div class="pagination">
+      {% if post_list.has_previous %}
+      <a href="?page={{post_list.previous_page_number}}">&laquo;</a>
+      {% endif %}
+      {% for pages in post_list.paginator.page_range %}
+      {% if post_list.number == pages %}
+      <a href="#">{{pages}}</a>
+      {% else %}
+      <a href="?page={{pages}}">{{pages}}</a>
+{% endif %}      
+{% endfor %}
+      {% if post_list.has_next %}
+      <a href="?page={{post_list.next_page_number}}">&raquo;</a>
+      {% endif %}
+    </div>
+        
+    
+  </div>   
+  {% endif %}
+</div>
+    </div>
+  </div>
+</div>
+<!-- end blog -->
+
+
+{% endblock %}
+
+
+  

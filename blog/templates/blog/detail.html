@@ -1,0 +1,183 @@
+
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+{% load static %}
+
+
+
+    <!-- end header -->
+<div class="yellow_bg">
+   <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                     <h2>{{post.title}}</h2>
+                    
+                  </div>
+               </div>
+            </div>
+          </div>
+</div>
+
+<!-- blog -->
+<div class="blog">
+  
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 mar_bottom">
+<div class="col-xs-12">
+        <div class="blog_box blog_box_inline col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="blog_img_box">
+            <figure><img src='../../media/{{post.image}}' alt="#"/>
+         
+            </figure>
+          </div>
+          <h3>{{post.title}}</h3>
+        </div>
+        <div class="blog_box blog_box_inline col-xl-6 col-lg-6 col-md-6 col-sm-12">
+           <div class="textboxfordetailmeal">
+               <div>     <h4>Created At </h4>
+                <span>{{post.time}}</span> <strong>Minutes</strong></div>
+
+
+
+                    <div>     <h4>Text : </h4>
+                        <span>{{post.content}} </span><strong></strong></div>
+
+
+                        <div>     <h4>Category</h4>
+                          <span>{{post.category}} </span><strong></strong></div>
+
+
+   
+        </div>
+          </div>
+        </div>
+       
+      </div> 
+
+
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mar_bottom">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mar_bottom">
+          <div class="post_category">
+
+            <h3>Categories</h3>
+  
+            <ul>
+              {% for category in categories %}
+              <a href="{% url 'blog:post_categories' category %}">
+              <li>
+                {{category.name}}
+              </li>
+            </a>
+              {% endfor %}
+            </ul>
+          </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mar_bottom">
+        <div class="post_category">
+
+          <h3>Tags</h3>
+
+          <ul>
+        {% for tag in post.tags.all %}
+        <a href="{% url 'blog:post_tags' tag%}">
+            <li>
+              {{tag}}
+            </li>
+        </a>    
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+    </div>
+
+
+  </div>
+
+
+
+</div>
+
+<div class="footer commentSection">
+  <div class="container-fluid">
+      <div class="row">
+        <div class=" col-md-12">
+          <h2>Leave Your<strong class="black">Comment</strong></h2>
+        </div>
+          <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12">
+        
+
+               <form class="main_form" method="post">
+                  <div class="row">
+
+                    {% csrf_token %}
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+<span class="select_comment">
+{{comment_form.user}}
+</span>
+               </div>
+
+               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <span class="select_comment">
+                {{comment_form.post}}
+                </span>
+                               </div>               
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                          <input class="form-control" placeholder="Email" type="email" name="email">
+                      </div>
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                          <input class="form-control" placeholder="Phone" type="number" name="phone">
+                      </div>
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <input class="form-control" placeholder="Date and time" type="datetime" name="created">
+                    </div>
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                          <textarea class="textarea" placeholder="Message" type="text" name="text"></textarea>
+                      </div>
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                          <button type="submit" class="send">Send</button>
+                      </div>
+                 
+               
+                </div>
+              </form> 
+
+              <!-- <form action="" method="POST" enctype="multipart/form-data" class="CommentForm">
+
+                {% csrf_token %}
+                {{comment_form}}
+
+                <button type="submit">Leave It</button>
+              </form> -->
+
+          
+
+          </div>
+
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mar_bottom">
+            <div class="post_category post_comments">
+    
+              <h1>Comments</h1>
+    
+              <ul>
+            {% for comment in comments %}
+            <a href="#">
+                <li>
+                  <h3>{{comment.user}}</h3>
+                  <section>{{comment.text}}</section>
+             
+                </li>
+            </a>    
+                {% endfor %}
+              </ul>
+            </div>
+        </div>
+<!-- end blog -->
+
+{% endblock %}

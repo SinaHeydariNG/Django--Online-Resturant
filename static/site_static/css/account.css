@@ -1,0 +1,56 @@
+section.vh-100 {
+    margin: 30px 0px;
+    padding: 15px;
+}
+
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+
+table.dashboard {
+    margin: 30px auto!important;
+    width: 73%;
+    padding: 10px;
+    border-radius: 26px;
+    border: none;
+    background: black;
+    box-shadow: 0px 5px 14px #888888;
+}
+
+
+
+.table-dark td, .table-dark th, .table-dark thead th {
+    border-color: white;
+    border: none;
+    border: 1px solid #f0f8ff1f;
+}
+
+.registerForm {}
+.registerForm div i::before {display: none;}
+.registerForm input[type=checkbox] {    display: block;
+    position: absolute;
+    right: -5%;
+}
+
+.form-control {
+    border: #f3f3f3 solid 2px!important;
+    border-radius: inherit;
+    border-radius: 16px;
+    margin-bottom: 0px!important;
+    padding: 15px 20px;
+    font-family: poppins;
+}
