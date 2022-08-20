@@ -2,6 +2,12 @@
 {% extends 'base.html' %}
 
 
+{% block title %}
+
+Blog List
+
+{% endblock title %}
+
 {% block body %}
 
 
@@ -32,7 +38,8 @@
             </figure>
           </div>
           <h3>{{post.title}}</h3>
-          <p>{{post.content}}</p>
+          <p>Author : <strong>{{post.author}}</strong></p>
+          <a class="button" href="{% url 'blog:blog_detail' post.id %}">See More</a>
         </div>
     </a>
       </div>

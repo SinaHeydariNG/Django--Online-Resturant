@@ -567,12 +567,15 @@
     background: #fff;
      box-shadow: #ddd 0px 3px 3px 0px;
 }
+
  .blog .blog_box .blog_img_box figure {
     margin:0;
      position: relative;
 }
  .blog_img_box figure img {
     width: 100%;
+    padding: 21px;
+    border-radius: 29px;
 }
  .blog .blog_box .blog_img_box figure span {
      background: #000;
@@ -595,12 +598,18 @@
      padding-bottom: 15px;
 }
  .blog .blog_box p {
-     color: #525050;
-     font-size: 17px;
-     line-height: 28px;
-     padding: 0px 20px;
-     padding-bottom:28px;
+    color: #525050;
+    font-size: 27px;
+    line-height: 28px;
+    padding: 0px 20px;
+    padding-bottom: 28px;
 }
+
+
+.blog .blog_box p strong {font-family: fantasy;
+    color: #673ab7;
+    font-size: 17px;}
+
 /** end blog **/
 /** Our Client **/
  .Client {
@@ -940,8 +949,19 @@
 
 .textboxfordetailmeal p {}
 
-.textboxfordetailmeal span {    color: green;
-     font-weight: bold;}
+.textboxfordetailmeal span {  color: #5041d6;
+    font-weight: bold;
+    font-family: auto;
+    text-align: justify;}
+
+
+.textboxfordetailmeal span.content-blog  {color: #6b6b6b;
+    font-weight: bold;
+    display: block;
+    width: 72%;
+    margin: 10px 10px;
+    font-family: auto;
+    text-align: justify;}
 
 .textboxfordetailmeal h4 {display: inline-block;}
 
@@ -1063,7 +1083,7 @@
 .commentSection {    margin-top: 0;
     background: white;}   
     
-span.select_comment {margin: 5px 0px;
+span.select_comment {margin: 11px 0px;
     display: block;}    
 
 .commentSection input {border-left: 2px solid #e3d105;
@@ -1231,6 +1251,20 @@ div.card.text-black {
     .search-form.search-form-list select {width: 100%!important;}
     .search-form.search-form-list button {width: 100%!important;}
     .search-form.search-form-list label {color: black;}
+
+    .blog .blog_box a.button {
+        display: block;
+        width: fit-content;
+        padding: 10px 17px;
+        margin: 5px;
+        background: #673ab7;
+        border-radius: 11px;
+        color: white;
+        font-family: cursive;
+        
+    }
+
+
         
 
 /* Added Category List */

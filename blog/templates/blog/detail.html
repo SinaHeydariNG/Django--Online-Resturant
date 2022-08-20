@@ -2,6 +2,10 @@
 {% extends 'base.html' %}
 
 
+{% block title %}
+{{post.title}}
+{% endblock title %}
+
 {% block body %}
 
 
@@ -31,7 +35,7 @@
     <div class="row">
       <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 mar_bottom">
 <div class="col-xs-12">
-        <div class="blog_box blog_box_inline col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="blog_box blog_box_inline col-xl-12 col-lg-6 col-md-6 col-sm-12">
           <div class="blog_img_box">
             <figure><img src='../../media/{{post.image}}' alt="#"/>
          
@@ -39,15 +43,15 @@
           </div>
           <h3>{{post.title}}</h3>
         </div>
-        <div class="blog_box blog_box_inline col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="blog_box blog_box_inline col-xl-12 col-lg-6 col-md-6 col-sm-12">
            <div class="textboxfordetailmeal">
                <div>     <h4>Created At </h4>
-                <span>{{post.time}}</span> <strong>Minutes</strong></div>
+                <span>{{post.created}}</span> <strong></strong></div>
 
 
 
                     <div>     <h4>Text : </h4>
-                        <span>{{post.content}} </span><strong></strong></div>
+                        <span class="content-blog">{{post.content}} </span><strong></strong></div>
 
 
                         <div>     <h4>Category</h4>
@@ -113,19 +117,33 @@
           <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12">
         
 
-               <form class="main_form" method="post">
+               <form action="{%url 'blog:blog_comment'  %}" class="main_form" method="post">
                   <div class="row">
 
                     {% csrf_token %}
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 <span class="select_comment">
-{{comment_form.user}}
+
+  <input type="text"id="" name="user" 
+  
+  {% if user.is_authenticated %}
+  disabled 
+  {% endif %}
+
+  {% if user.is_authenticated %}
+  value="{{user.username}}"
+  {% else %}
+  {% endif %}
+  
+  >
+
 </span>
                </div>
 
                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <span class="select_comment">
-                {{comment_form.post}}
+              Post 
+            <input type="text" name="post" id="" disabled value="{{post}}">
                 </span>
                                </div>               
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -135,7 +153,7 @@
                           <input class="form-control" placeholder="Phone" type="number" name="phone">
                       </div>
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Date and time" type="datetime" name="created">
+                        <input class="form-control" placeholder="Date and time" type="time" name="created">
                     </div>
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                           <textarea class="textarea" placeholder="Message" type="text" name="text"></textarea>
