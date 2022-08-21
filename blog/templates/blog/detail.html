@@ -117,23 +117,15 @@
           <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12">
         
 
-               <form action="{%url 'blog:blog_comment'  %}" class="main_form" method="post">
+               <form action="{%url 'blog:add_comment' %}" class="main_form" method="post">
                   <div class="row">
 
                     {% csrf_token %}
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 <span class="select_comment">
 
-  <input type="text"id="" name="user" 
-  
-  {% if user.is_authenticated %}
-  disabled 
-  {% endif %}
+  <input type="text"id="" name="user_id"  value="{{user.id}}" placeholder="Leave your name"
 
-  {% if user.is_authenticated %}
-  value="{{user.username}}"
-  {% else %}
-  {% endif %}
   
   >
 
@@ -143,7 +135,7 @@
                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <span class="select_comment">
               Post 
-            <input type="text" name="post" id="" disabled value="{{post}}">
+            <input type="text" name="post_id" id="" value="{{post.id}}" placeholder="">
                 </span>
                                </div>               
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -153,7 +145,7 @@
                           <input class="form-control" placeholder="Phone" type="number" name="phone">
                       </div>
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Date and time" type="time" name="created">
+                        <input class="form-control" placeholder="Date and time" type="date" name="created">
                     </div>
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                           <textarea class="textarea" placeholder="Message" type="text" name="text"></textarea>
@@ -187,7 +179,7 @@
             {% for comment in comments %}
             <a href="#">
                 <li>
-                  <h3>{{comment.user}}</h3>
+                  <h3>{{comment.email}}</h3>
                   <section>{{comment.text}}</section>
              
                 </li>

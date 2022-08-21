@@ -37,15 +37,15 @@ class Category(models.Model):
 
 
 class Comments(models.Model):
-    user = models.ForeignKey(User , on_delete=models.CASCADE , default=1 , null=True , blank=True )
-    post = models.ForeignKey(Post , on_delete=models.CASCADE , default=1,null=True , blank=True)
+    user_id = models.IntegerField(default=1)
+    post_id = models.IntegerField(default=1)
     email = models.EmailField()
     phone = models.IntegerField()
     text = models.TextField()
     created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return str(self.user)
+        return str(self.text)
 
     class Meta:
         verbose_name = "Comment"

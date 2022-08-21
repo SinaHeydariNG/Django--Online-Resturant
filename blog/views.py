@@ -1,5 +1,5 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from requests import request
 from . import models
 from .forms import CommentsForm
@@ -27,28 +27,26 @@ def post_list(request):
 def post_detail(request , id):
     site_info = SiteDetails.objects.last() 
     post = models.Post.objects.get(id=id)
-    comments = models.Comments.objects.filter(post=post)
+    comments = models.Comments.objects.filter(post_id=id)
     categories = models.Category.objects.all()
 
-    
-    if request.method == "POST":
-
-        user = request.POST['user']
-        post = request.POST['post']
-        email = request.POST['email']
-        phone = request.POST['phone']
-        text = request.POST['text']
-        created = request.POST['created']
-        comment = models.Comments(user=user , post=post , email=email , phon=phone , text=text , created=created)
-        comment.save()
-
-    else:
-        print("Invalid")
 
     context = {"post" : post , "categories" : categories , "comments" : comments  ,    "site_info" : site_info, }
     return render(request , "blog/detail.html" , context)
         
 
+def add_comment(request):
+    if request.method == "POST":
+        user_id = request.POST['user_id']
+        post_id = request.POST['post_id']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        text = request.POST['text']
+        created = request.POST['created']
+        commnet = models.Comments(user_id = user_id , post_id = post_id , email = email , phone = phone , text = text , created = created)
+        commnet.save()
+
+        return redirect("blog:blog_list")
 
 
          
